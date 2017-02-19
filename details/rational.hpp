@@ -20,7 +20,7 @@ template <typename I> inline ALG2_CXX11_CONSTEXPR I gcd(I m, I n)
   }
   return m;
 #else
-  return gcd(n, m % n);
+  return (m < n)? gcd(m, n % m) : gcd(n, m % n);
 #endif
 }
 
