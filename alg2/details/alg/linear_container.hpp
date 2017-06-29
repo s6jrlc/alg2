@@ -172,6 +172,15 @@ template <size_t N, typename R, class A> struct linear_container
     return this->m_data[idx];
   }
 
+  ALG2_CXX11_CONSTEXPR bool operator ==(const A& v) const
+  {
+    return partial_equality(v);
+  }
+  ALG2_CXX11_CONSTEXPR bool operator !=(const A& v) const
+  {
+    return !partial_equality(v);
+  }
+
   ALG2_CXX11_CONSTEXPR A operator =(const A& v) const
   {
     return assign(v, Utility::make_index_sequence<N>::type());
@@ -207,6 +216,24 @@ template <size_t N, typename R, class A> struct linear_container
   }
 
 private:
+  ALG2_CXX11_CONSTEXPR bool partial_equality(const A& v, size_t i = 0) const
+  {
+    return
+    (
+      (i < N)
+      ?
+      (
+        (this->m_data[i] == v[i])
+        ?
+        partial_equality(v, i+1)
+        :
+        false
+      )
+      :
+      true
+     );
+  }
+
   template <size_t ... Idx>
   ALG2_CXX11_CONSTEXPR A assign(const A& v, Utility::index_sequence<Idx...>) const
   {
