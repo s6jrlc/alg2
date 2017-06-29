@@ -1,0 +1,27 @@
+#!/bin/sh
+
+#find . -type d -maxdepth 2 -name CMakeFiles
+find . -type d -name CMakeFiles
+find . -type d -name CMakeScripts
+find . -type d -name *.xcodeproj
+find . -type d -name *.dir
+find . -type d -name *build
+find . -type d -name DerivedData
+find . -type d -name Debug
+find . -type d -name Release
+find . -type f -name CMakeCache.txt
+find . -type f -name cmake_install.cmake
+find . -type f -name Makefile
+find . -type f -name install_manifest.txt
+find . -type d -name CMakeFiles -exec rm -rf {} +
+find . -type d -name CMakeScripts -exec rm -rf {} +
+find . -type d -name *.xcodeproj -exec rm -rf {} +
+find . -type d -name *.dir -exec rm -rf {} +
+find . -type d -name *build -exec rm -rf {} +
+find . -type d -name DerivedData -exec rm -rf {} +
+find . -type d -name Debug -exec rm -rf {} +
+find . -type d -name Release -exec rm -rf {} +
+find . -type f -name CMakeCache.txt -exec rm -f {} +
+find . -type f -name cmake_install.cmake -exec rm -f {} +
+find . -type f -name Makefile -exec rm -f {} +
+find . -type f -name install_manifest.txt -exec rm -f {} +
