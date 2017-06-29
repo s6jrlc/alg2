@@ -35,6 +35,10 @@ template <typename R, typename A> struct Euclidean_container<2, R, A>
   : linear_container<2, R, A>{}
   {
   }
+  template <typename ... Rs> ALG2_CXX11_CONSTEXPR Euclidean_container(Rs... xs)
+  : linear_container<2, R, A>{ xs... }
+  {
+  }
   ALG2_CXX11_CONSTEXPR Euclidean_container(const R x, const R y)
   : linear_container<2, R, A>{x, y}
   {
@@ -54,6 +58,10 @@ template <typename R, typename A> struct Euclidean_container<3, R, A>
 {
   ALG2_CXX11_CONSTEXPR Euclidean_container()
   : linear_container<3, R, A>{}
+  {
+  }
+  template <typename ... Rs> ALG2_CXX11_CONSTEXPR Euclidean_container(Rs... xs)
+  : linear_container<3, R, A>{ xs... }
   {
   }
   ALG2_CXX11_CONSTEXPR Euclidean_container(const R x, const R y, const R z)
@@ -84,6 +92,10 @@ template <typename R, typename A> struct Euclidean_container<4, R, A>
 {
   ALG2_CXX11_CONSTEXPR Euclidean_container()
   : linear_container<4, R, A>{}
+  {
+  }
+  template <typename ... Rs> ALG2_CXX11_CONSTEXPR Euclidean_container(Rs... xs)
+  : linear_container<4, R, A>{ xs... }
   {
   }
   ALG2_CXX11_CONSTEXPR Euclidean_container(const R x, const R y, const R z, const R w)

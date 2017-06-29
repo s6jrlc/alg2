@@ -54,7 +54,7 @@ template <size_t M, size_t N, typename R, class A> struct linear_double_containe
 
   ALG2_CXX11_CONSTEXPR A operator =(const A& m) const
   {
-    return assign(m, Utility::make_index_sequence<M*N>::type());
+    return assign(m, Utility::make_index_sequence<M*N>());
   }
   
   ALG2_CXX11_CONSTEXPR A operator +() const

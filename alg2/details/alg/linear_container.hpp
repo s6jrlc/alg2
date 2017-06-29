@@ -22,9 +22,10 @@ template <size_t N, typename R, class A> struct linear_container
   typedef R& value_reference;
 
   template <typename ... Rs> ALG2_CXX11_CONSTEXPR linear_container(Rs... xs)
-  : container<N, R>{{ xs... }}
+  : container<N, R>{ xs... }
   {
   }
+  
   template <size_t ... Idx> ALG2_CXX11_CONSTEXPR linear_container(const A& v, Utility::index_sequence<Idx...>)
   : container<N, R>{ v[Idx]... }
   {
@@ -181,9 +182,9 @@ template <size_t N, typename R, class A> struct linear_container
     return !partial_equality(v);
   }
 
-  ALG2_CXX11_CONSTEXPR A operator =(const A& v) const
+  ALG2_CXX14_CONSTEXPR A operator =(const A& v)
   {
-    return assign(v, Utility::make_index_sequence<N>::type());
+    return assign(v, Utility::make_index_sequence<N>());
   }
 
   ALG2_CXX11_CONSTEXPR A operator +() const
@@ -194,6 +195,7 @@ template <size_t N, typename R, class A> struct linear_container
   {
     return negate(Utility::make_index_sequence<N>());
   }
+
   ALG2_CXX11_CONSTEXPR A operator +(const A& v) const
   {
     return add(v, Utility::make_index_sequence<N>());
@@ -213,6 +215,23 @@ template <size_t N, typename R, class A> struct linear_container
   ALG2_CXX11_CONSTEXPR R operator ,(const A& v) const
   {
     return partial_inner_production(v);
+  }
+
+  ALG2_CXX14_CONSTEXPR A operator +=(const A& v)
+  {
+    return (*this = static_cast<linear_container>(*this + v));
+  }
+  ALG2_CXX14_CONSTEXPR A operator -=(const A& v)
+  {
+    return (*this = static_cast<linear_container>(*this + (-v)));
+  }
+  ALG2_CXX14_CONSTEXPR A operator *=(const R t)
+  {
+    return (*this = static_cast<linear_container>(*this * t));
+  }
+  ALG2_CXX14_CONSTEXPR A operator /=(const R t)
+  {
+    return (*this = static_cast<linear_container>(*this * ((R)1/t)));
   }
 
 private:
@@ -235,7 +254,7 @@ private:
   }
 
   template <size_t ... Idx>
-  ALG2_CXX11_CONSTEXPR A assign(const A& v, Utility::index_sequence<Idx...>) const
+  ALG2_CXX14_CONSTEXPR A assign(const A& v, Utility::index_sequence<Idx...>)
   {
     return { this->m_data[Idx] = v[Idx] ... };
   }

@@ -30,6 +30,10 @@ template <size_t N, typename R> struct container
   {
     return this->m_data;
   }
+  ALG2_CXX14_CONSTEXPR iterator data()
+  {
+    return this->m_data;
+  }
   ALG2_CXX11_CONSTEXPR const iterator begin() const
   {
     return this->m_data;
