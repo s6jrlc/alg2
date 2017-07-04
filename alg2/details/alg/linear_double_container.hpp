@@ -103,11 +103,6 @@ private:
   {
     return { this->m_data[Idx] * t ... };
   }
-  template <size_t ... Idx>
-  ALG2_CXX11_CONSTEXPR A transpose(Utility::index_sequence<Idx...>) const
-  {
-    return { this->m_data[Idx]... };
-  }
 };
 
 

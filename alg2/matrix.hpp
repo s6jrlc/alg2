@@ -15,7 +15,6 @@
 #include"config/exception.hpp"
 
 #include"details/alg/linear_double_container.hpp"
-#include<tuple>
 
 
 /* The classes below are exported */
@@ -49,6 +48,7 @@ public:
 
 #include"details/alg/matrix.hpp"
 #include"utility/matrix.hpp"
+#include"utility/composition.hpp"
 
 
 #endif // ALG2_MATRIX_HPP

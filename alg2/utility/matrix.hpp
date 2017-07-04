@@ -10,145 +10,137 @@ namespace Alg2
 {
 
 
-namespace Matrix
-{
-
-
-namespace Utility
-{
-
-using namespace ::Alg2;
-using namespace Alg2::Utility;
-
-template <size_t M, size_t N, typename R, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR matrix<M, N, R> make_matrix(const matrix<M, N, R>& m, Utility::index_sequence<Idx...>)
+  namespace Utility
   {
-    return { m[Idx]... };
-  }
 
-template <size_t M, size_t N, typename R, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR matrix<1, N, R> row(const matrix<M, N, R>& m, size_t idx, Utility::index_sequence<Idx...>)
-  {
-    return { m[idx*M + Idx]... };
-  }
-template <size_t M, size_t N, typename R, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR matrix<M, 1, R> col(const matrix<M, N, R>& m, size_t idx, Utility::index_sequence<Idx...>)
-  {
-    return { m[idx + Idx]... };
-  }
+    namespace Extract
+    {
+ 
+      template <size_t M, size_t N, typename R, size_t ... Idx>
+      inline ALG2_CXX11_CONSTEXPR matrix<N, M, R> transpose(const matrix<M, N, R>& m, Utility::index_sequence<Idx...>)
+      {
+        return { m[(Idx%M)*N + (Idx/M)]... };
+      }
+      template <size_t M, size_t N, typename R, size_t ... J>
+      inline ALG2_CXX11_CONSTEXPR matrix<1, N, R> row(const matrix<M, N, R>& m, size_t i, Utility::index_sequence<J...>)
+      {
+        return { m[i*N + J]... };
+      }
+      template <size_t M, size_t N, typename R, size_t ... I>
+      inline ALG2_CXX11_CONSTEXPR matrix<M, 1, R> col(const matrix<M, N, R>& m, size_t j, Utility::index_sequence<I...>)
+      {
+        return { m[I*N + j]... };
+      }
 
-#ifdef ALG2_USE_VECTOR
-template <size_t M, size_t N, typename R, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR vector<N, R> row_block(const matrix<M, N, R>& m, size_t idx, Utility::index_sequence<Idx...>)
-  {
-    return { m[idx*M + Idx]... };
-  }
-  template <size_t M, size_t N, typename R, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR vector<M, R> col_block(const matrix<M, N, R>& m, size_t idx, Utility::index_sequence<Idx...>)
-  {
-    return { m[idx + Idx]... };
-  }
+      template <size_t M, size_t N, typename R, size_t ... Idx>
+      inline ALG2_CXX11_CONSTEXPR matrix<M-1, N, R> truncate_btm_row(const matrix<M, N, R>& m, Utility::index_sequence<Idx...>)
+      {
+        return { m[Idx]... };
+      }
+      template <size_t M, size_t N, typename R, size_t ... Idx>
+      inline ALG2_CXX11_CONSTEXPR matrix<M-1, N, R> truncate_top_row(const matrix<M, N, R>& m, Utility::index_sequence<Idx...>)
+      {
+        return { m[Idx + N]... };
+      }
+      template <size_t M, size_t N, typename R, size_t ... Idx>
+      inline ALG2_CXX11_CONSTEXPR matrix<M, N-1, R> truncate_right_col(const matrix<M, N, R>& m, Utility::index_sequence<Idx...>)
+      {
+        return { m[Idx + Idx/(N-1)]... };
+      }
+      template <size_t M, size_t N, typename R, size_t ... Idx>
+      inline ALG2_CXX11_CONSTEXPR matrix<M, N-1, R> truncate_left_col(const matrix<M, N, R>& m, Utility::index_sequence<Idx...>)
+      {
+        return { m[(Idx + 1) + (Idx)/(N-1)]... };
+      }
 
-template <size_t M, size_t N, typename R, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR vector<N, R> multiply(const matrix<M, N, R>& m, const vector<N, R>& v, Utility::index_sequence<Idx...>)
-  {
-    return { (row_block(m, Idx, Utility::make_index_sequence<N>()), v)... };
-  }
-#endif
+      template <size_t M, size_t N, typename R, size_t ... Idx>
+      inline ALG2_CXX11_CONSTEXPR matrix<M+1, N, R> extend_btm_row(const matrix<M, N, R>& m, Utility::index_sequence<Idx...>)
+      {
+        return { (Idx < M*N? m[Idx] : (R)0)... };
+      }
+      template <size_t M, size_t N, typename R, size_t ... Idx>
+      inline ALG2_CXX11_CONSTEXPR matrix<M, N+1, R> extend_right_col(const matrix<M, N, R>& m, Utility::index_sequence<Idx...>)
+      {
+        return { (Idx % (N+1) < N? m[Idx - Idx/(N+1)] : (R)0)... };
+      }
 
-} // end of namespace Utility
+    } // end of namespace Extract
 
+    template <size_t M, size_t N, typename R>
+    inline ALG2_CXX11_CONSTEXPR matrix<N, M, R> transpose(const matrix<M, N, R>& m)
+    {
+      return Extract::transpose(m, Utility::make_index_sequence<M*N>());
+    }
+    template <size_t M, size_t N, typename R>
+    inline ALG2_CXX11_CONSTEXPR matrix<1, N, R> single_row(const matrix<M, N, R>& m, size_t i)
+    {
+      return Extract::row(m, i, Utility::make_index_sequence<N>());
+    }
+    template <size_t M, size_t N, typename R>
+    inline ALG2_CXX11_CONSTEXPR matrix<M, 1, R> single_col(const matrix<M, N, R>& m, size_t j)
+    {
+      return Extract::col(m, j, Utility::make_index_sequence<M>());
+    }
 
-template <size_t M, size_t N, typename R>
-  inline ALG2_CXX11_CONSTEXPR matrix<1, N, R> row(const matrix<M, N, R>& m, size_t idx)
-{
-  return Utility::row(m, idx, Utility::make_index_sequence<N>());
-}
-template <size_t M, size_t N, typename R>
-  inline ALG2_CXX11_CONSTEXPR matrix<M, 1, R> col(const matrix<M, N, R>& m, size_t idx)
-{
-  return Utility::col(m, idx, Utility::make_partial_index_sequence<0, (M-1)*N, N>());
-}
+    template <size_t M, size_t N, typename R>
+    inline ALG2_CXX11_CONSTEXPR matrix<M-1, N, R> truncate_btm_row(const matrix<M, N, R>& m)
+    {
+      return Extract::truncate_btm_row(m, Utility::make_index_sequence<(M-1)*N>());
+    }
+    template <size_t M, size_t N, typename R>
+    inline ALG2_CXX11_CONSTEXPR matrix<M-1, N, R> truncate_top_row(const matrix<M, N, R>& m)
+    {
+      return Extract::truncate_top_row(m, Utility::make_index_sequence<(M-1)*N>());
+    }
+    template <size_t M, size_t N, typename R>
+    inline ALG2_CXX11_CONSTEXPR matrix<M, N-1, R> truncate_right_col(const matrix<M, N, R>& m)
+    {
+      return Extract::truncate_right_col(m, Utility::make_index_sequence<M*(N-1)>());
+    }
+    template <size_t M, size_t N, typename R>
+    inline ALG2_CXX11_CONSTEXPR matrix<M, N-1, R> truncate_left_col(const matrix<M, N, R>& m)
+    {
+      return Extract::truncate_left_col(m, Utility::make_index_sequence<M*(N-1)>());
+    }
 
-namespace Utility
-{
+    template <size_t M, size_t N, typename R>
+    inline ALG2_CXX11_CONSTEXPR matrix<M+1, N, R> extend_btm_row(const matrix<M, N, R>& m)
+    {
+      return Extract::extend_btm_row(m, Utility::make_index_sequence<(M+1)*N>());
+    }
+    template <size_t M, size_t N, typename R>
+    inline ALG2_CXX11_CONSTEXPR matrix<M, N+1, R> extend_right_col(const matrix<M, N, R>& m)
+    {
+      return Extract::extend_right_col(m, Utility::make_index_sequence<M*(N+1)>());
+    }
 
-template <size_t N, typename R>
-  inline ALG2_CXX11_CONSTEXPR R pseudo_inner_prod(const matrix<1, N, R>& lhs, const matrix<N, 1, R>& rhs, size_t i = 0)
-  {
-    return (i < N)? pseudo_inner_prod(lhs, rhs) + lhs[i]*rhs[i] : 0;
-  }
-template <size_t M, size_t N, typename R, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR matrix<1, N, R> partial_multiply(const matrix<1, M, R>& lhs, const matrix<M, N, R>& rhs, Utility::index_sequence<Idx...>)
-  {
-    return { pseudo_inner_prod(lhs, Matrix::col(rhs, Idx))... };
-  }
-template <size_t M, size_t N, typename R, typename ... Rs, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR std::tuple<Rs...> partial_multiply2(const matrix<1, M, R>& lhs, const matrix<M, N, R>& rhs, Utility::index_sequence<Idx...>)
-  {
-    return std::forward_as_tuple(pseudo_inner_prod(lhs, Matrix::col(rhs, Idx))...);
-  }
-template <size_t L, size_t M, size_t N, typename R, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR matrix<L, N, R> multiply(const matrix<L, M, R>& lhs, const matrix<M, N, R>& rhs, Utility::index_sequence<Idx...>)
-  {
-    return { Utility::partial_multiply(Matrix::row(lhs, Idx), rhs, Utility::make_index_sequence<N>())... };
-  }
-template <size_t L, size_t M, size_t N, typename R, typename ... Rs, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR std::tuple<Rs...> multiply2(const matrix<L, M, R>& lhs, const matrix<M, N, R>& rhs, Utility::index_sequence<Idx...>)
-  {
-    return std::forward_as_tuple(Utility::partial_multiply2(Matrix::row(lhs, Idx), rhs, Utility::make_index_sequence<N>())...);
-  }
-template <size_t L, size_t M, size_t N, typename R, size_t ... Idx>
-  inline ALG2_CXX11_CONSTEXPR matrix<L, N, R> multiple_as_matrix(const matrix<L, M, R>& lhs, const matrix<M, N, R>& rhs)
-  {
-    return {};
-  }
-/*
- 現在のエラーは1行の行列を集めてM行の行列を作るコンストラクタが存在しないことによるもの
- 1行または1列の行列を複数集めて行列を作る方法としてパラメータパック2つの多重展開(現時点で不可能)しか浮かんできていないため、
- 現在行列同士の積を求めるオペレータはC++14にのみ対応
-*/
-}
+    namespace Composite
+    {
 
-template <size_t M, size_t N, typename R>
-  inline ALG2_CXX11_CONSTEXPR matrix<N, M, R> transpose(const matrix<M, N, R>& m)
-{
-  return Utility::make_matrix(m, Utility::make_row2col_sequence<M, N>());
-}
+      template <size_t N, typename R>
+      inline ALG2_CXX11_CONSTEXPR R pseudo_scalar_prod(const matrix<1, N, R>& lhs, const matrix<N, 1, R>& rhs, size_t idx = 0)
+      {
+        return (idx < N)? pseudo_scalar_prod(lhs, rhs, idx+1) + lhs[idx]*rhs[idx] : 0;
+      }
+      template <size_t L, size_t M, size_t N, typename R, size_t ... Idx>
+      inline ALG2_CXX11_CONSTEXPR matrix<L, N, R> multiply(const matrix<L, M, R>& lhs, const matrix<M, N, R>& rhs, Utility::index_sequence<Idx...>)
+      {
+        return { pseudo_scalar_prod(single_row(lhs, Idx/N), single_col(rhs, Idx%N))... };
+      }
 
-#ifdef ALG2_USE_VECTOR
-template <size_t M, size_t N, typename R>
-  inline ALG2_CXX11_CONSTEXPR vector<N, R> row_vector(const matrix<M, N, R>& m, size_t idx)
-{
-  return Utility::row_block(m, idx, Utility::make_index_sequence<N>());
-}
-template <size_t M, size_t N, typename R>
-  inline ALG2_CXX11_CONSTEXPR vector<M, R> col_vector(const matrix<M, N, R>& m, size_t idx)
-{
-  return Utility::col_block(m, idx, Utility::make_partial_index_sequence<0, (M-1)*N, N>());
-}
-#endif
+    } // end of namespace Composite
 
+  } // end of namespace Utility
 
-} // end of namespace Matrix
-
-#ifdef ALG2_USE_VECTOR
-template <size_t M, size_t N, typename R>
-  inline ALG2_CXX11_CONSTEXPR vector<N, R> operator *(const matrix<M, N, R>& m, const vector<N, R>& v)
-{
-  return Matrix::Utility::multiply(m, v, Utility::make_row2col_sequence<M, 1>());
-}
-#endif
-
-#ifdef ALG2_CXX11
+#ifdef ALG2_CXX11_OR_LATER
 template <size_t L, size_t M, size_t N, typename R>
   inline ALG2_CXX11_CONSTEXPR matrix<L, N, R> operator *(const matrix<L, M, R>& lhs, const matrix<M, N, R>& rhs)
   {
-    return Matrix::Utility::multiply(lhs, rhs, Utility::make_index_sequence<L>());
+    return Utility::Composite::multiply(lhs, rhs, Utility::make_index_sequence<L*N>());
   }
 #else
 template <size_t L, size_t M, size_t N, typename R>
-  inline ALG2_CXX14_CONSTEXPR matrix<L, N, R> operator *(const matrix<L, M, R>& lhs, const matrix<M, N, R>& rhs)
+  inline matrix<L, N, R> operator *(const matrix<L, M, R>& lhs, const matrix<M, N, R>& rhs)
   {
     matrix<L, N, R> res;
     for (size_t i=0; i<L; ++i)

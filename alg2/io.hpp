@@ -70,6 +70,28 @@ template <size_t M, size_t N, typename R>
 }
 #endif
 
+#ifdef LINEAR_CONTAINER
+template <size_t M, size_t N, typename R>
+  inline std::ostream& operator <<(std::ostream& os, const Linear::double_variable_map<M, N, R>& m)
+{
+  size_t i=0, j=0;
+  os << "[";
+  while (true)
+  {
+    while (true)
+    {
+      os << std::setw(5) << m[i*M + j];
+      if (++j >= N) break;
+    }
+    os << "]\n";
+    if (++i >= M) break;
+    j = 0;
+    os << "[";
+  }
+  return os;
+}
+#endif
+
 #ifdef ALG2_USE_COMPLEX
 template <typename R>
   inline std::ostream& operator <<(std::ostream& os, const complex<R>& z)

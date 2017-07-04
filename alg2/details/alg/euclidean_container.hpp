@@ -69,7 +69,7 @@ template <typename R, typename A> struct Euclidean_container<3, R, A>
   {
   }
 
-  ALG2_CXX11_CONSTEXPR A operator *(const A& v) const
+  ALG2_CXX11_CONSTEXPR A operator ^(const A& v) const
   {
     return { y()*v.z() - z()*v.y(), z()*v.x() - x()*v.z(), x()*v.y() - y()*v.x() };
   }
@@ -132,7 +132,7 @@ template <typename R, typename A> struct Euclidean_container<7, R, A>
   {
   }
 
-  ALG2_CXX11_CONSTEXPR A operator *(const A& v) const
+  ALG2_CXX11_CONSTEXPR A operator ^(const A& v) const
   {
     return {
       (*this)[2]*v[3]-(*this)[3]*v[2]-(*this)[4]*v[5]+(*this)[5]*v[4]-(*this)[6]*v[7]+(*this)[7]*v[6],

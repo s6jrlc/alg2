@@ -72,6 +72,7 @@ typedef vector<4, long double> Vector4ld;
 
 #include"details/alg/vector.hpp"
 #include"utility/vector.hpp"
+#include"utility/composition.hpp"
 
 
 #endif // ALG2_VECTOR_HPP
