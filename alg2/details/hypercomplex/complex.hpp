@@ -60,45 +60,38 @@ template <typename R>
 
 
 template <typename R>
-  inline ALG2_CXX11_CONSTEXPR complex<R> complex<R>::operator +(const complex& z) const
+inline ALG2_CXX11_CONSTEXPR complex<R> operator +(const complex<R>& lhs, const complex<R>& rhs)
 {
-  return { re() + z.re(), im() + z.im() };
+  return { lhs.re() + rhs.re(), lhs.im() + rhs.im() };
 }
 template <typename R>
-  inline ALG2_CXX11_CONSTEXPR complex<R> complex<R>::operator -(const complex& z) const
+inline ALG2_CXX11_CONSTEXPR complex<R> operator -(const complex<R>& lhs, const complex<R>& rhs)
 {
-  return { re() - z.re(), im() - z.im() };
+  return { lhs.re() - rhs.re(), lhs.im() - rhs.im() };
 }
 template <typename R>
-  inline ALG2_CXX11_CONSTEXPR complex<R> complex<R>::operator *(const complex& z) const
+inline ALG2_CXX11_CONSTEXPR complex<R> operator *(const complex<R>& z, const R t)
 {
-  return { re()*z.re() - im()*z.im(), re()*z.im() + im()*z.re() };
+  return { z.re() * t, z.im() * t };
 }
 template <typename R>
-  inline ALG2_CXX11_CONSTEXPR complex<R> complex<R>::operator /(const complex& z) const
+inline ALG2_CXX11_CONSTEXPR complex<R> operator /(const complex<R>& z, const R t)
 {
-  return { (re()*z.re()+im()*z.im())/z.norm2(), (im()*z.re() - re()*z.im())/norm2() };
+  return { z.re() / t, z.im() / t };
 }
 
 template <typename R>
-  inline ALG2_CXX14_CONSTEXPR complex<R> complex<R>::operator +=(const complex& z)
+inline ALG2_CXX11_CONSTEXPR complex<R> operator *(const complex<R>& lhs, const complex<R>& rhs)
 {
-  return (*this = *this + z);
+  return { lhs.re()*rhs.re() - lhs.im()*rhs.im(), lhs.re()*rhs.im() + lhs.im()*rhs.re() };
 }
 template <typename R>
-  inline ALG2_CXX14_CONSTEXPR complex<R> complex<R>::operator -=(const complex& z)
+inline ALG2_CXX11_CONSTEXPR complex<R> operator /(const complex<R>& lhs, const complex<R>& rhs)
 {
-  return (*this = *this - z);
-}
-template <typename R>
-  inline ALG2_CXX14_CONSTEXPR complex<R> complex<R>::operator *=(const complex& z)
-{
-  return (*this = *this * z);
-}
-template <typename R>
-  inline ALG2_CXX14_CONSTEXPR complex<R> complex<R>::operator /=(const complex& z)
-{
-  return (*this = *this / z);
+  return {
+    (lhs.re()*rhs.re() + lhs.im()*rhs.im())/lhs.norm2(),
+    (lhs.im()*rhs.re() - lhs.re()*rhs.im())/lhs.norm2()
+  };
 }
 
 

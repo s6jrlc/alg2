@@ -19,7 +19,7 @@ template <size_t N, typename R, class A> struct linear_container
 {
   typedef R value_type;
   typedef R* iterator;
-  typedef R& value_reference;
+  typedef R& reference;
 
   template <typename ... Rs> ALG2_CXX11_CONSTEXPR linear_container(Rs... xs)
   : container<N, R>{ xs... }
@@ -164,11 +164,11 @@ template <size_t N, typename R, class A> struct linear_container
   {
     return this->m_data[idx];
   }
-  ALG2_CXX11_CONSTEXPR value_reference at(size_t idx) const
+  ALG2_CXX11_CONSTEXPR reference at(size_t idx) const
   {
     return this->m_data[idx];
   }
-  ALG2_CXX14_CONSTEXPR value_reference at(size_t idx)
+  ALG2_CXX14_CONSTEXPR reference at(size_t idx)
   {
     return this->m_data[idx];
   }

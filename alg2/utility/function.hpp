@@ -16,7 +16,8 @@ namespace Utility
 {
 
 
-namespace details{
+namespace details
+{
 
   template <typename I> inline ALG2_CXX11_CONSTEXPR I gcd(I m, I n)
   {
@@ -90,11 +91,6 @@ template <typename R> inline ALG2_CXX11_CONSTEXPR R cube(R x)
   static_assert(std::is_arithmetic<R>::value, "invalid type for Alg2::Utility::cube");
   return x*x*x;
 }
-template <typename R> inline ALG2_CXX11_CONSTEXPR R power_of5(R x)
-{
-  static_assert(std::is_arithmetic<R>::value, "invalid type for Alg2::Utility::power_of5");
-  return x*x*x*x*x;
-}
 
 template <typename R, typename I> inline ALG2_CXX11_CONSTEXPR R int_power(R x, I i)
 {
@@ -106,6 +102,11 @@ template <typename R, typename I> inline ALG2_CXX11_CONSTEXPR R int_power(R x, I
 template <typename R> inline ALG2_CXX11_CONSTEXPR R fmod(R x, R y)
 {
   return x - static_cast<int>(x/y)*y;
+}
+
+template <typename R> inline ALG2_CXX11_CONSTEXPR bool is_nan(R x)
+{
+  return x != x;
 }
 
 

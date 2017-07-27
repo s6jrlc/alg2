@@ -14,18 +14,19 @@ template <size_t N, typename R> struct container
 {
   typedef R value_type;
   typedef R* iterator;
-  typedef R& value_reference;
+  typedef R& reference;
 
   value_type m_data[N];
 
-  ALG2_CXX11_CONSTEXPR size_t size() const
+  static ALG2_CXX11_CONSTEXPR size_t size()
   {
     return N;
   }
-  ALG2_CXX11_CONSTEXPR size_t data_size() const
+  static ALG2_CXX11_CONSTEXPR size_t data_size()
   {
     return sizeof(R)*N;
   }
+
   ALG2_CXX11_CONSTEXPR const iterator data() const
   {
     return this->m_data;

@@ -13,7 +13,7 @@
 
 #include"config/config.hpp"
 #include"config/exception.hpp"
-#include"utility/index_sequence.hpp"
+#include"utility/primitive.hpp"
 #include"math.hpp"
 #include"details/alg/euclidean_container.hpp"
 

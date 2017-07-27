@@ -37,8 +37,11 @@ public:
   ALG2_CXX11_CONSTEXPR value_type im2() const;
   ALG2_CXX11_CONSTEXPR value_type im3() const;
 
+  ALG2_CXX11_CONSTEXPR R norm2() const;
   ALG2_CXX11_CONSTEXPR R norm() const;
-  ALG2_CXX11_CONSTEXPR quaternion conjugate(const quaternion& z) const;
+  ALG2_CXX11_CONSTEXPR quaternion conjugate() const;
+  ALG2_CXX11_CONSTEXPR quaternion normalize() const;
+  ALG2_CXX11_CONSTEXPR quaternion inverse() const;
 
   ALG2_CXX11_CONSTEXPR quaternion();
   ALG2_CXX11_CONSTEXPR quaternion(value_type a, value_type b, value_type c, value_type d);
@@ -47,10 +50,6 @@ public:
 
   ALG2_CXX11_CONSTEXPR quaternion operator +() const;
   ALG2_CXX11_CONSTEXPR quaternion operator -() const;
-
-  ALG2_CXX11_CONSTEXPR quaternion operator +(const quaternion& z) const;
-  ALG2_CXX11_CONSTEXPR quaternion operator -(const quaternion& z) const;
-  ALG2_CXX11_CONSTEXPR quaternion operator *(const quaternion& z) const;
 };
   
   

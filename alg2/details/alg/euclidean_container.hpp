@@ -147,15 +147,6 @@ template <typename R, typename A> struct Euclidean_container<7, R, A>
 };
 
 
-template <size_t N, typename R> class Hoge
-  : public Euclidean_container<N, R, Hoge<N, R> >
-  {
-  public:
-    template <typename ... Rs> ALG2_CXX11_CONSTEXPR Hoge(Rs... xs)
-    : Euclidean_container<N, R, Hoge<N, R> >{xs...}
-    {
-    }
-  };
 } // end of namespace Alg2
 
 

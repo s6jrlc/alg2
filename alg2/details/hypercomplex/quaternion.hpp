@@ -38,16 +38,27 @@ template <typename R> inline ALG2_CXX11_CONSTEXPR R quaternion<R>::im3() const
 }
 
 
+template <typename R> inline ALG2_CXX11_CONSTEXPR R quaternion<R>::norm2() const
+{
+  return re()*re() + im1()*im1() + im2()*im2() + im3()*im3();
+}
 template <typename R> inline ALG2_CXX11_CONSTEXPR R quaternion<R>::norm() const
 {
-  return Math::sqrt(re()*re() + im1()*im1() + im2()*im2() + im3()*im3());
+  return Math::sqrt(norm2());
 }
 
-template <typename R> inline ALG2_CXX11_CONSTEXPR quaternion<R> quaternion<R>::conjugate(const quaternion& z) const
+template <typename R> inline ALG2_CXX11_CONSTEXPR quaternion<R> quaternion<R>::conjugate() const
 {
   return { re(), -im1(), -im2(), -im3() };
 }
-
+template <typename R> inline ALG2_CXX11_CONSTEXPR quaternion<R> quaternion<R>::normalize() const
+{
+  return *this / norm();
+}
+template <typename R> inline ALG2_CXX11_CONSTEXPR quaternion<R> quaternion<R>::inverse() const
+{
+  return conjugate() / norm();
+}
 
 template <typename R> inline ALG2_CXX11_CONSTEXPR quaternion<R> quaternion<R>::operator +() const
 {
@@ -58,15 +69,42 @@ template <typename R> inline ALG2_CXX11_CONSTEXPR quaternion<R> quaternion<R>::o
   return { -re(), -im1(), -im2(), -im3() };
 }
 
-template <typename R> inline ALG2_CXX11_CONSTEXPR quaternion<R> quaternion<R>::operator *(const quaternion& z) const
+template <typename R>
+inline ALG2_CXX11_CONSTEXPR quaternion<R> operator +(const quaternion<R>& lhs, const quaternion<R>& rhs)
+{
+  return { lhs.re() + rhs.re(), lhs.im1() + rhs.im1(), lhs.im2() + rhs.im2(), lhs.im3() + rhs.im3() };
+}
+template <typename R>
+inline ALG2_CXX11_CONSTEXPR quaternion<R> operator -(const quaternion<R>& lhs, const quaternion<R>& rhs)
+{
+  return { lhs.re() - rhs.re(), lhs.im1() - rhs.im1(), lhs.im2() - rhs.im2(), lhs.im3() - rhs.im3() };
+}
+template <typename R>
+inline ALG2_CXX11_CONSTEXPR quaternion<R> operator *(const quaternion<R>& z, const R t)
+{
+  return { z.re()*t, z.im1()*t, z.im2()*t, z.im3()*t };
+}
+template <typename R>
+inline ALG2_CXX11_CONSTEXPR quaternion<R> operator /(const quaternion<R>& z, const R t)
+{
+  return { z.re()/t, z.im1()/t, z.im2()/t, z.im3()/t };
+}
+
+template <typename R>
+inline ALG2_CXX11_CONSTEXPR quaternion<R> operator *(const quaternion<R>& lhs, const quaternion<R>& rhs)
 {
   return {
-    re()*z.re() - im1()*z.im1() - im2()*z.im2() - im3()*z.im3(),
-    re()*z.im1() + im1()*z.re() + im2()*z.im3() - im3()*z.im2(),
-    re()*z.im2() + im2()*z.re() - im1()*z.im3() + im3()*z.im1(),
-    re()*z.im3() + im3()*z.re() + im1()*z.im2() - im2()*z.im1(),
+    lhs.re()*rhs.re() - lhs.im1()*rhs.im1() - lhs.im2()*rhs.im2() - lhs.im3()*rhs.im3(),
+    lhs.re()*rhs.im1() + lhs.im1()*rhs.re() + lhs.im2()*rhs.im3() - lhs.im3()*rhs.im2(),
+    lhs.re()*rhs.im2() + lhs.im2()*rhs.re() - lhs.im1()*rhs.im3() + lhs.im3()*rhs.im1(),
+    lhs.re()*rhs.im3() + lhs.im3()*rhs.re() + lhs.im1()*rhs.im2() - lhs.im2()*rhs.im1()
   };
 }
+template <typename R>
+inline ALG2_CXX11_CONSTEXPR quaternion<R> operator /(const quaternion<R>& lhs, const quaternion<R>& rhs)
+  {
+    return lhs * rhs.inverse();
+  }
 
 
 }

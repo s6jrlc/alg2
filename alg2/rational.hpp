@@ -7,6 +7,7 @@
 
 #include"config/config.hpp"
 #include"utility/function.hpp"
+#include"utility/operator.hpp"
 
 
 #ifndef ALG2_USE_RATIONAL
@@ -18,6 +19,11 @@ namespace Alg2 {
 
 
 template <typename I = int> class Rational
+  : Utility::Operator::equality1<Rational<I>,
+    Utility::Operator::equality2<Rational<I>, I,
+    Utility::Operator::comparison1<Rational<I>,
+    Utility::Operator::comparison2<Rational<I>, I
+  > > > >
 {
   I num, den;
 
@@ -86,25 +92,11 @@ public:
   template <typename N> friend ALG2_CXX11_CONSTEXPR Rational operator /(const N, const Rational<N>&);
 
   template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator ==(const Rational<N>&, const Rational<N>&);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator !=(const Rational<N>&, const Rational<N>&);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator >=(const Rational<N>&, const Rational<N>&);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator <=(const Rational<N>&, const Rational<N>&);
   template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator <(const Rational<N>&, const Rational<N>&);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator >(const Rational<N>&, const Rational<N>&);
 
   template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator ==(const Rational<N>&, const N);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator !=(const Rational<N>&, const N);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator >=(const Rational<N>&, const N);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator <=(const Rational<N>&, const N);
   template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator <(const Rational<N>&, const N);
   template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator >(const Rational<N>&, const N);
-
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator ==(const N, const Rational<N>&);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator !=(const N, const Rational<N>&);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator >=(const N, const Rational<N>&);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator <=(const N, const Rational<N>&);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator <(const N, const Rational<N>&);
-  template <typename N> friend ALG2_CXX11_CONSTEXPR bool operator >(const N, const Rational<N>&);
 };
 
 #include"details/rational/rational.hpp"

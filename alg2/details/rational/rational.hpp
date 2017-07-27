@@ -29,7 +29,6 @@ template <typename I> inline ALG2_CXX14_CONSTEXPR Rational<I> Rational<I>::opera
   num = i; den = 1; return *this;
 }
 
-
 template <typename I> inline ALG2_CXX11_CONSTEXPR Rational<I>::operator float() const
 {
   return static_cast<float>(num)/static_cast<float>(den);
@@ -213,43 +212,14 @@ template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator ==(const Rationa
 {
   return (lf.num*rf.den == rf.num*lf.den);
 }
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator !=(const Rational<I>& lf, const Rational<I>& rf)
-{
-  return (lf.num*rf.den != rf.num*lf.den);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator >=(const Rational<I>& lf, const Rational<I>& rf)
-{
-  return (lf.num*rf.den >= rf.num*lf.den);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator <=(const Rational<I>& lf, const Rational<I>& rf)
-{
-  return (lf.num*rf.den <= rf.num*lf.den);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator >(const Rational<I>& lf, const Rational<I>& rf)
-{
-  return (lf.num*rf.den > rf.num*lf.den);
-}
 template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator <(const Rational<I>& lf, const Rational<I>& rf)
 {
   return (lf.num*rf.den < rf.num*lf.den);
 }
 
-
 template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator ==(const Rational<I>& f, const I i)
 {
   return (f.num == i*f.den);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator !=(const Rational<I>& f, const I i)
-{
-  return (f.num != i*f.den);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator >=(const Rational<I>& f, const I i)
-{
-  return (f.num >= i*f.den);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator <=(const Rational<I>& f, const I i)
-{
-  return (f.num <= i*f.den);
 }
 template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator >(const Rational<I>& f, const I i)
 {
@@ -258,30 +228,4 @@ template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator >(const Rational
 template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator <(const Rational<I>& f, const I i)
 {
   return (f.num < i*f.den);
-}
-
-
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator ==(const I i, const Rational<I>& f)
-{
-  return (i*f.den == f.num);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator !=(const I i, const Rational<I>& f)
-{
-  return (i*f.den != f.num);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator >=(const I i, const Rational<I>& f)
-{
-  return (i*f.den >= f.num);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator <=(const I i, const Rational<I>& f)
-{
-  return (i*f.den <= f.num);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator >(const I i, const Rational<I>& f)
-{
-  return (i*f.den >= f.num);
-}
-template <typename I> inline ALG2_CXX11_CONSTEXPR bool operator <(const I i, const Rational<I>& f)
-{
-  return (i*f.den <= f.num);
 }

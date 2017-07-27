@@ -43,16 +43,6 @@ public:
   ALG2_CXX11_CONSTEXPR complex();
   ALG2_CXX11_CONSTEXPR complex(value_type a, value_type b);
   explicit ALG2_CXX11_CONSTEXPR complex(value_type x);
-
-  ALG2_CXX11_CONSTEXPR complex operator +(const complex& z) const;
-  ALG2_CXX11_CONSTEXPR complex operator -(const complex& z) const;
-  ALG2_CXX11_CONSTEXPR complex operator *(const complex& z) const;
-  ALG2_CXX11_CONSTEXPR complex operator /(const complex& z) const;
-
-  ALG2_CXX14_CONSTEXPR complex operator +=(const complex& z);
-  ALG2_CXX14_CONSTEXPR complex operator -=(const complex& z);
-  ALG2_CXX14_CONSTEXPR complex operator *=(const complex& z);
-  ALG2_CXX14_CONSTEXPR complex operator /=(const complex& z);
 };
 
 
