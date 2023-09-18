@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>A10C5CC7-410B-45E8-8DE5-FB45C35FBB0B</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>A679B469-1CBB-431D-A7F3-F6F1C0BAFD5F</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.IDE.LaunchSchemeAction</string>
+			<key>fileName</key>
+			<string>Run-hypercomplex_number-2023.09.18_21-59-39-+0900.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasConsoleLog</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>alg2 project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>hypercomplex_number</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run hypercomplex_number</string>
+			<key>timeStartedRecording</key>
+			<real>716734779.87935495</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Run hypercomplex_number</string>
+			<key>uniqueIdentifier</key>
+			<string>A10C5CC7-410B-45E8-8DE5-FB45C35FBB0B</string>
+		</dict>
+		<key>D0552093-502F-4A1E-9B5D-214616D3B9C6</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>C40FC029-00B3-4B35-8916-4C1A4D1E6C23</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.IDE.LaunchSchemeAction</string>
+			<key>fileName</key>
+			<string>Run-algebra-2023.09.18_21-59-06-+0900.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasConsoleLog</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>alg2 project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>algebra</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run algebra</string>
+			<key>timeStartedRecording</key>
+			<real>716734746.12608397</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Run algebra</string>
+			<key>uniqueIdentifier</key>
+			<string>D0552093-502F-4A1E-9B5D-214616D3B9C6</string>
+		</dict>
+		<key>E7B4D107-656D-4825-A7B4-085FA73C96B9</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>7F08E861-C12E-4F7F-8995-B448126EC7A9</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.IDE.LaunchSchemeAction</string>
+			<key>fileName</key>
+			<string>Run-experimental-2023.09.18_21-59-30-+0900.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasConsoleLog</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>alg2 project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>experimental</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run experimental</string>
+			<key>timeStartedRecording</key>
+			<real>716734770.10477602</real>
+			<key>timeStoppedRecording</key>
+			<real>0.0</real>
+			<key>title</key>
+			<string>Run experimental</string>
+			<key>uniqueIdentifier</key>
+			<string>E7B4D107-656D-4825-A7B4-085FA73C96B9</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

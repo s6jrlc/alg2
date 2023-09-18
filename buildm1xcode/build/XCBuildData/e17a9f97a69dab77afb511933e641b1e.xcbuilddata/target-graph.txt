@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+ZERO_CHECK in alg2, no dependencies
+hypercomplex_number in alg2, depends on:
+ZERO_CHECK in alg2 (explicit)
