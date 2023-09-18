@@ -1,9 +1,0 @@
-/Users/sakura/Desktop/cmakeprojects/alg2/buildm1xcode/CMakeFiles/install.dir
-/Users/sakura/Desktop/cmakeprojects/alg2/buildm1xcode/CMakeFiles/ALL_BUILD.dir
-/Users/sakura/Desktop/cmakeprojects/alg2/buildm1xcode/CMakeFiles/ZERO_CHECK.dir
-/Users/sakura/Desktop/cmakeprojects/alg2/buildm1xcode/hdr/CMakeFiles/alg2.dir
-/Users/sakura/Desktop/cmakeprojects/alg2/buildm1xcode/hdr/CMakeFiles/install.dir
-/Users/sakura/Desktop/cmakeprojects/alg2/buildm1xcode/examples/CMakeFiles/algebra.dir
-/Users/sakura/Desktop/cmakeprojects/alg2/buildm1xcode/examples/CMakeFiles/experimental.dir
-/Users/sakura/Desktop/cmakeprojects/alg2/buildm1xcode/examples/CMakeFiles/hypercomplex_number.dir
-/Users/sakura/Desktop/cmakeprojects/alg2/buildm1xcode/examples/CMakeFiles/install.dir
