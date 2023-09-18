@@ -17,6 +17,7 @@ foreach(hdr IN LISTS headers)
   get_filename_component(hdr_path "${hdr}" PATH)
   string(REPLACE "/" "\\" hdr_path_ide "${hdr_path}")
 	#message(${hdr})
+	string(REPLACE "alg2" "Header Files" hdr_path_ide "${hdr_path_ide}")
   source_group("${hdr_path_ide}" FILES "${hdr}")
 endforeach()
 
