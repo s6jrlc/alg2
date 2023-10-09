@@ -1,5 +1,5 @@
 //
-// exception.hpp
+// alg2 config: exception.hpp
 //
 
 #ifndef ALG2_CONFIG_EXCEPTION_HPP
@@ -12,9 +12,7 @@
 namespace Alg2
 {
 
-
 class dynamic_error : public std::bad_exception {};
-
 
 }
 

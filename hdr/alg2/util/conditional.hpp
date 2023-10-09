@@ -15,7 +15,6 @@ namespace Alg2
   
   namespace Util
   {
-
 #ifdef ALG2_CXX11_OR_LATER
     using std::conditional;
 #else
@@ -35,7 +34,6 @@ namespace Alg2
     template <bool Cond, typename TT, typename FT>
     using conditional_t = typename conditional<Cond, TT, FT>::type;
 #endif
-    
   } // end of namespace Util
 
 } // end of namespace Alg2

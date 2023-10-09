@@ -6,7 +6,7 @@
 #define ALG2_UTILITY_FUNCTION_HPP
 
 #include"enable_if.hpp"
-
+#include"traits.hpp"
 
 namespace Alg2
 {
@@ -98,7 +98,7 @@ namespace Alg2
     
     template <
       typename I,
-      typename Util::enable_if<std::is_integral<I>::value>::type = Util::enabler
+      typename Util::enable_if<Util::is_integral<I>::value>::type = Util::enabler
     >
     inline ALG2_CXX11_CONSTEXPR I gcd(I m, I n)
     {
@@ -107,7 +107,7 @@ namespace Alg2
 
     template <
       typename I,
-      typename Util::enable_if<std::is_integral<I>::value>::type = Util::enabler
+      typename Util::enable_if<Util::is_integral<I>::value>::type = Util::enabler
     >
     inline ALG2_CXX11_CONSTEXPR I gcm(I m, I n)
     {
