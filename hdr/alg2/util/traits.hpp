@@ -12,19 +12,17 @@
 namespace Alg2
 {
 
-	namespace Util
-	{
-
+  namespace Util
+  {
 #if defined(ALG2_CXX11_OR_LATER)
+    using std::is_same;
+    using std::is_const;
+
     using std::is_integral;
     using std::is_floating_point;
     using std::is_arithmetic;
 
-# if defined(ALG2_CXX14)
-    template <typename I> ALG2_CXX11_CONSTEXPR bool is_integral_v = is_integral<I>::value;
-    template <typename R> ALG2_CXX11_CONSTEXPR bool is_floating_point_v = is_floating_point<R>::value;
-    template <typename R> ALG2_CXX11_CONSTEXPR bool is_arithmetic_v = is_arithmetic<R>::value;
-# elif defined(ALG2_CXX17_OR_LATER)
+# if defined(ALG2_CXX17_OR_LATER)
     using std::is_integral_v;
     using std::is_floating_point_v;
     using std::is_arithmetic_v;
@@ -34,13 +32,17 @@ namespace Alg2
     using std::integral;
     using std::floating_point;
 
-    template <typename R> concept ArithType = is_arithmetic<R>::value;
- #endif
+    template <typename R> concept arithmetic = is_arithmetic<R>::value;
 
+    template <typename I> concept IntType = integral<I>;
+    template <typename R> concept FloatType = floating_point<R>;
+    template <typename R> concept ArithType = arithmetic<R>;
+# endif
+  
+    using std::remove_const;
+    using std::remove_reference;
 #endif
-
-
-	} // end of namespace Util
+  } // end of namespace Util
 
 } // end of namespace Alg2
 

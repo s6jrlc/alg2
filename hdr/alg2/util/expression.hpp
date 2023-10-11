@@ -38,9 +38,9 @@ namespace Alg2
         typedef typename F::result_type value_type;
         typedef value_type const_reference;
         typedef typename Util::conditional<
-        std::is_same<F, scalar_identity<typename T::value_type> >::value,
-        typename T::reference,
-        value_type
+          Util::is_same<F, scalar_identity<typename T::value_type> >::value,
+          typename T::reference,
+          value_type
         >::type reference;
         typedef typename T::size_type size_type;
         typedef T expr_type;
@@ -58,11 +58,11 @@ namespace Alg2
         {
         }
         
-        ALG2_CXX11_CONSTEXPR const_reference operator[](size_t i) const
+        ALG2_CXX11_CONSTEXPR const_reference operator[](size_type i) const
         {
           return func_type::apply(expr_[i]);
         }
-        ALG2_CXX14_CONSTEXPR reference operator[](size_t i)
+        ALG2_CXX14_CONSTEXPR reference operator[](size_type i)
         {
           return func_type::apply(expr_[i]);
         }
@@ -75,7 +75,7 @@ namespace Alg2
         typedef F func_type;
         typedef typename F::result_type value_type;
         typedef value_type const_reference;
-        typedef decltype(std::declval<typename L::size_type>() + std::declval<typename R::size_type>()) size_type;
+        typedef decltype(Util::declval<typename L::size_type>() + Util::declval<typename R::size_type>()) size_type;
         typedef L expr_lhtype;
         typedef R expr_rhtype;
         typedef typename L::closure_type closure_lhtype;
@@ -108,9 +108,9 @@ namespace Alg2
         typedef typename E::value_type value_type;
         typedef typename E::const_reference const_reference;
         typedef typename Util::conditional<
-        std::is_const<E>::value,
-        const typename E::const_reference,
-        typename E::reference
+          Util::is_const<E>::value,
+          typename E::const_reference,
+          typename E::reference
         >::type reference;
         typedef E referred_type;
         typedef self_type closure_type;
@@ -119,18 +119,30 @@ namespace Alg2
         referred_type expr_;
         
       public:
-        explicit ALG2_CXX11_CONSTEXPR expression_reference(expression_reference& expr)
+        explicit ALG2_CXX11_CONSTEXPR expression_reference(const referred_type& expr)
+        : expr_(expr)
+        {
+        }
+        explicit ALG2_CXX11_CONSTEXPR expression_reference(referred_type& expr)
         : expr_(expr)
         {
         }
         
+        ALG2_CXX11_CONSTEXPR const referred_type& expression() const
+        {
+          return expr_;
+        }
+        ALG2_CXX14_CONSTEXPR referred_type& expression()
+        {
+          return expr_;
+        }
         ALG2_CXX11_CONSTEXPR const_reference operator[](size_type i) const
         {
-          return expr_[i];
+          return expression()[i];
         }
         ALG2_CXX14_CONSTEXPR reference operator[](size_type i)
         {
-          return expr_[i];
+          return expression()[i];
         }
       };
       
@@ -169,7 +181,7 @@ namespace Alg2
       {
         typedef const L& arg_lhtype;
         typedef const R& arg_rhtype;
-        typedef decltype(std::declval<arg_lhtype>() + std::declval<arg_rhtype>()) result_type;
+        typedef decltype(Util::declval<arg_lhtype>() + Util::declval<arg_rhtype>()) result_type;
       };
       
       template <class L, class R> struct scalar_plus
@@ -223,7 +235,7 @@ namespace Alg2
       
       template <class L, class R> struct scalar_binary_assign
       {
-        typedef typename std::remove_reference<typename std::remove_const<L>::type>::type& arg_lhtype;
+        typedef typename Util::remove_reference<typename Util::remove_const<L>::type>::type& arg_lhtype;
         typedef const R& arg_rhtype;
         typedef L& result_type;
       };

@@ -27,7 +27,6 @@ namespace Alg2
 
   namespace Util
   {
-
 #if defined(ALG2_CXX20_OR_LATER)
     template <floating_point R> inline ALG2_CXX20_CONSTEXPR R PI()
     {
@@ -37,7 +36,7 @@ namespace Alg2
 #else
     template <
       typename R,
-      typename Util::enable_if<Util::is_arithmetic<R>::value>::type = Util::enabler
+      typename Util::enable_if<Util::is_floating_point<R>::value>::type = Util::enabler
     >
     inline ALG2_CXX11_CONSTEXPR R PI()
     {
@@ -55,7 +54,7 @@ namespace Alg2
 #else
     template <
       typename R,
-      typename Util::enable_if<Util::is_arithmetic<R>::value>::type = Util::enabler
+      typename Util::enable_if<Util::is_floating_point<R>::value>::type = Util::enabler
     >
     inline ALG2_CXX11_CONSTEXPR R E()
     {
@@ -66,7 +65,7 @@ namespace Alg2
 # endif
 #endif
   
-#if defined(ALG2_USE_STD_LIMITS)
+#if defined(ALG2_USE_STD_MACHINE_EPSILON)
 
 # if defined(ALG2_CXX11_OR_LATER)
     template <typename R> using Epsilon = std::numeric_limits<R>::epsilon();
@@ -77,7 +76,7 @@ namespace Alg2
     }
 # endif
 
-#elif defined(ALG2_USE_UNIQUE_LIMITS)
+#elif defined(ALG2_USE_UNIQUE_EPSILON)
     template <
       typename R,
       typename Util::enable_if<Util::is_same<R, float>::value>::type = Util::enabler
@@ -102,16 +101,12 @@ namespace Alg2
     {
       return 1.e-4932L;
     }
-
 #else
-  
     template <typename R> inline ALG2_CXX11_CONSTEXPR R Epsilon()
     {
       return std::numeric_limits<R>::min() * 1.0e8;
     }
-  
 #endif
-
   } // end of namespace Util
 
 } // end of namespace Alg2

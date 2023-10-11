@@ -5,23 +5,23 @@
 #ifndef ALG2_UTILITY_INDEX_SEQUENCE_HPP
 #define ALG2_UTILITY_INDEX_SEQUENCE_HPP
 
-#ifdef ALG2_CXX14_OR_LATER
+#if defined(ALG2_CXX14_OR_LATER)
 # include<utility>
+#elif defined(ALG2_CXX11)
+# include"enable_if.hpp"
 #endif
-#include"enable_if.hpp"
 
 namespace Alg2
 {
   
   namespace Util
   {
-
-#ifdef ALG2_CXX14_OR_LATER
+#if defined(ALG2_CXX14_OR_LATER)
     using std::integer_sequence;
     using std::make_integer_sequence;
     using std::index_sequence;
     using std::make_index_sequence;
-#else
+#elif defined(ALG2_CXX11)
     template <class I, I ... Idx> struct integer_sequence {};
     
     template <class I, typename Seq, I Next> struct make_integer_sequence_next_even;
@@ -66,7 +66,6 @@ namespace Alg2
     template <size_t ... Idx> using index_sequence = integer_sequence<size_t, Idx...>;
     template <size_t N> using make_index_sequence = make_integer_sequence<size_t, N>;
 #endif
-
   } // end of namespace Util
   
 } // end of namespace Alg2
