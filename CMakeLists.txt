@@ -14,8 +14,9 @@ project(alg2
 unset(MAJOR)
 unset(MINOR)
 unset(PATCH)
-
-set(CXX_STANDARD_VERSION 17 CACHE STRING "C++ standard ver.")
+if (NOT DEFINED CXX_STANDARD_VERSION)
+	set(CXX_STANDARD_VERSION 17 CACHE STRING "C++ standard ver.")
+endif ()
 
 add_subdirectory(hdr)
 add_subdirectory(examples EXCLUDE_FROM_ALL)

@@ -100,7 +100,7 @@ namespace Alg2
       };
       
       template <class E> class expression_reference
-      : public expression<E>
+      : public expression<expression_reference<E> >
       {
       public:
         typedef expression_reference<E> self_type;
@@ -116,7 +116,7 @@ namespace Alg2
         typedef self_type closure_type;
         
       private:
-        referred_type expr_;
+        referred_type& expr_;
         
       public:
         explicit ALG2_CXX11_CONSTEXPR expression_reference(const referred_type& expr)
@@ -128,21 +128,13 @@ namespace Alg2
         {
         }
         
-        ALG2_CXX11_CONSTEXPR const referred_type& expression() const
-        {
-          return expr_;
-        }
-        ALG2_CXX14_CONSTEXPR referred_type& expression()
-        {
-          return expr_;
-        }
         ALG2_CXX11_CONSTEXPR const_reference operator[](size_type i) const
         {
-          return expression()[i];
+          return expr_()[i];
         }
         ALG2_CXX14_CONSTEXPR reference operator[](size_type i)
         {
-          return expression()[i];
+          return expr_()[i];
         }
       };
       
