@@ -13,7 +13,8 @@
 
 #include"config/config.hpp"
 #include"config/exception.hpp"
-
+#include"util/index_sequence.hpp"
+#include"math.hpp"
 #include"details/alg/linear_double_container.hpp"
 
 
