@@ -4,7 +4,7 @@
 	${PROJECT_SOURCE_DIR}/CMakeLists.txt
 ]]
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.15...${CMAKE_VERSION})
 
 set(MAJOR "1")
 set(MINOR "0")
